@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar Example</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">
+            <h1 class="display-4 fw-bold" style="background: -webkit-linear-gradient(left, rgb(255, 0, 0), rgb(0, 255, 0)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                LOGO EMPRESA
+            </h1>
+            <!--<img src="ruta_del_logo" width="30" height="30" class="d-inline-block align-top" alt="Logo de la empresa">-->
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/habitaciones">Habitaciones</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/reservas">Reservas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/como_llegar">¿Cómo llegar?</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/nosotros">Nuestra historia</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/contacto">Contacto</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
