@@ -7,8 +7,12 @@ app = Flask(__name__)
 #Datos para hoja NOSOTROS
 from data.data_general import personal_data
 
+@app.route("/")
+def home():
+    return render_template("index.html")
+
 #COMO LLEGAR
-@app.route('/como_llegar')
+@app.route('/comollegar')
 def como_llegar():
     return render_template('como_llegar.html')
 
