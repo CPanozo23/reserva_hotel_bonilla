@@ -18,6 +18,10 @@ def ver_habitaciones():
     habitaciones_db = list(db.habitacion.find())
     return render_template('habitaciones.html', habitaciones=habitaciones_db)
 
+@app.route("/")
+def home():
+    return render_template("index.html")
+
 #COMO LLEGAR
 @app.route('/comollegar')
 def como_llegar():
