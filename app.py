@@ -1,24 +1,38 @@
 from flask import Flask, render_template, request, Response, jsonify, redirect, url_for
 import database as dbase
 from models.reserva import Reserva
-db = dbase.dbConnection()
+
+from bson import objectid
+from datetime import datetime, timedelta 
+db =dbase.dbConnection()
 app = Flask(__name__)
 
-#Datos para hoja NOSOTROS
+
+
+@app.context_processor
+def utility_processor():
+    def format_datetime(date):
+        return date.strftime('%Y-%m-%d')
+    return dict(datetime=datetime, timedelta=timedelta, format_datetime=format_datetime)
+
+#RESERVAS
+@app.route('/reservas')
+def reservar():
+    habitaciones_db = list(db.habitacion.find())
+    return render_template('reservas.html', habitaciones=habitaciones_db, datetime=datetime, timedelta=timedelta) 
+
+
+#DATOS PARA HOJA NOSOTROS
 from data.data_general import personal_data
 
-@app.route("/")
+#HOME
+@app.route('/')
 def home():
-    return render_template('/index.html')
-
+    return render_template('index.html')
 #COMO LLEGAR
 @app.route('/como_llegar')
 def como_llegar():
     return render_template('como_llegar.html')
-
-@app.route('/reservas')
-def reservar():
-    return render_template('reservas.html')
 
 @app.route('/reservas/agregar', methods=["POST"])
 def agregar_reserva():
