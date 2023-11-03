@@ -31,6 +31,33 @@ def como_llegar():
 def gestion_reservas():
     reservas_db=list (db.reservas.find())
     return render_template('/admin/gestion_reservas.html', reservas =reservas_db)
+#CONTACTO
+@app.route("/contacto")
+def contacto():
+    return render_template('contacto.html')
+
+#GESTION CONTACTO
+@app.route('/gestion_contacto')
+def gestion_contacto():
+    mensajes_db = list(db.mensajes.find())
+    return render_template('admin/gestion_contacto.html', mensajes=mensajes_db)
+
+###############################################################################################################################################################################
+
+#CONTACTO: POST
+@app.route('/mensaje/agregar', methods=['POST'])
+def agregar_mensaje():
+    mensajes = db.mensaje
+    asunto = request.form['asunto']
+    nombre = request.form['nombre']
+    apellido = request.form['apellido']
+    correo = request.form['correo']
+    mensaje = request.form['mensaje']
+    estado = "Mensaje recibido"
+
+    mensaje = Mensaje(asunto, nombre, apellido, correo, mensaje, estado)
+    mensajes.insert_one(mensaje.to_db_collection())
+    return redirect(url_for('home'))
 
 #CONTACTO
 @app.route("/contacto")
