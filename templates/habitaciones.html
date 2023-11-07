@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <metahttp-equiv="X-UA-Compatible" content="IE=edge"></metahttp-equiv>zs
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Habitaciones</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 <body>
     {% include 'componentes/nav.html'%}
@@ -12,16 +13,36 @@
     AQUI VA EL SLIDESHOW (CARUSEL)
     </section>
     <main>
-    <h1>Listado de habitaciones</h1>s
+    <h1>Listado de habitaciones</h1>
+    <!--
+        BUSCAR ICONOS, AGREGAR DONDE ESTA EL SPAN CON FITNESS_CENTER
+        https://fonts.google.com/icons?selected=Material+Symbols+Outlined:fitness_center:FILL@0;wght@400;GRAD@0;opsz@24-->
+
+    <section>
+        <span class="material-symbols-outlined">fitness_center</span>
+        <span class="material-symbols-outlined">grade</span>
+    </section>
+    {% for habitacion in habitaciones%}
+    <article class="col-md-6 col-lg-4">
+        <div class="card">
+            <img src={{ url_for('static', filename='images/j1.jpg') }} class="card-img-top" alt="...">
+            <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+        </div>
+    </article>
+    {% endfor %}
     <ul>
-        {% for i in range habitaciones%}
+        {% for habitacion in habitaciones%}
+        
             <li>
                 <h2>{{habitacion ['nombre'] }}</h2>
                 <p>Estilo: {{habitacion['estilo'] }}</p>
                 <p>Estrellas:
                     {% for i in range (habitacion['estrellas']) %}
-                A
-                {% endfor %}    
+                    ⭐
+                    {% endfor %}    
                 </p>
                 <p>Precio:{{habitacion['precio'] }} </p>
                 <img src="{{habitacion['img_principal'] }}" alt="{{habitacion['nonmbre'] }}">
