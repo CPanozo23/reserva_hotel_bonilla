@@ -17,6 +17,18 @@ def gestion_reservas():
     reservas_db=list (db.reservas.find())
     return render_template('/admin/gestion_reservas.html', reservas =reservas_db)
 
+@app.route('/estado_reserva', methods=['POST'])
+def cambiar_estado():
+    reserva_id=request.form.get['reserva_id']
+    #db = dbase.dbConnection()
+    collection = db['reservas']
+    reserva = collection.find_one({"_id":ObjectId(reserva_id)})
+    if reserva:
+        collection.update_one({"_id": ObjectId(reserva_id)},{"$set":{"estado":"Aceptada"}})
+        return "cambiado"
+    else:
+        return "error"
+
 @app.errorhandler(404)
 def notFound(error=None):
     message = {
