@@ -33,7 +33,7 @@ def gestion_contacto():
 #CONTACTO: POST
 @app.route('/mensaje/agregar', methods=['POST'])
 def agregar_mensaje():
-    mensajes = db.mensaje
+    mensajes = db.mensajes
     asunto = request.form['asunto']
     nombre = request.form['nombre']
     apellido = request.form['apellido']
