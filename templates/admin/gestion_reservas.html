@@ -21,6 +21,15 @@
                 {% endfor %}
             </ul >
         </div>
+        <!--REEMPLAZA ESTE DIV POR CODIGO-->
+        <div class="col-md-12 col-lg-14 col-12 bg-tertiary">
+            {{ reserva['estado']}}
+        <form action="/estado_reserva" method="post">
+            <input type=""hidden" name="reserva_id" 
+                value ="{{ reserval['_id'] }}">
+            <input type="submit" value="Aceptada"
+        </form>
+        </div>
             <div class="col-md-12 col-lg-4 col-12 bg-tertiary">Estado:{{ reserva[ 'estado'] }}</div>
         </div>
             {% endfor %}
