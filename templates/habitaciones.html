@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <metahttp-equiv="X-UA-Compatible" content="IE=edge"></metahttp-equiv>zs
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habitaciones</title>
+</head>
+<body>
+    {% include 'componentes/nav.html'%}
+    <section style="background:goldenrond; height: 400px;">
+    AQUI VA EL SLIDESHOW (CARUSEL)
+    </section>
+    <main>
+    <h1>Listado de habitaciones</h1>s
+    <ul>
+        {% for i in range habitaciones%}
+            <li>
+                <h2>{{habitacion ['nombre'] }}</h2>
+                <p>Estilo: {{habitacion['estilo'] }}</p>
+                <p>Estrellas:
+                    {% for i in range (habitacion['estrellas']) %}
+                A
+                {% endfor %}    
+                </p>
+                <p>Precio:{{habitacion['precio'] }} </p>
+                <img src="{{habitacion['img_principal'] }}" alt="{{habitacion['nonmbre'] }}">
+                <form action="/habitacion/{{habitacion['_id'] }}" method="get"> 
+                    <input type"submit" value="ver detalles">
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+</main>
+    {% include 'componentes/footer.html'%}
+    
+</body>
+</html>

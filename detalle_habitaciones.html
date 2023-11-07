@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Detalle de Habitaciones</title>
+</head>
+<body>
+    {% include 'componentes/nav.html'%}
+    <section style="background:goldenrond; height: 400px;">
+    AQUI VA EL SLIDESHOW (CARUSEL)
+    </section>
+    <main>
+    <h1>Detalle de habitación</h1>
+    <h2>{{habitacion['nombre'] }}</h2>
+    <p>Estilo: {{habitacion['estilo'] }}</p>
+    <p>Estrellas:
+        {% for i in range (habitacion['estrellas']) %}
+        A   
+        {% endfor %}
+    </p>
+    <p>Servicios:</p>
+    <ul>
+        <li>Climatización: {{ habitacion['servicios']['climatizada'] }}</li>
+        <li>Tipo de tema: {{ habitacion['servicios'] ['cama'] }}</li>
+        <li>Baño: {{ habitacion['servicios']['bannio'] }}</li>
+        <li> Noche especial: {{ habitacion['serrvicios']['Noche_Especial] }}</li>
+    </ul>
+    <p> Precio: ${{ habitacion['precio'] }}</p>
+    <img src="{{ habitacion['img_principal'] }}" alt="{{habitacion['nombre'] }}">
+    </main>
+    {% include 'componentes/footer.html'%}
+
+</body>
+</html>
