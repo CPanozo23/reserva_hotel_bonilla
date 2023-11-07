@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body class="bg-warning">
-    
+
     {% include 'componentes/nav.html' %}
 
     <main class="container">
@@ -35,7 +35,7 @@
             
             <div class="form-group">
                 <label for="mensaje">Mensaje:</label>
-                <textarea id="mensaje" class="form-control" name="mensaje"></textarea>
+                <textarea id="mensaje" class="form-control" name="mensaje" maxlength="300"></textarea>
             </div>
             
             <input type="submit" value="Enviar">
