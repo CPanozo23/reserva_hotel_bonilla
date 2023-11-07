@@ -12,7 +12,10 @@ from data.data_general import personal_data
 def como_llegar():
     return render_template('como_llegar.html')
 
-
+@app.route('/gestion_reservas')
+def gestion_reservas():
+    reservas_db=list (db.reservas.find())
+    return render_template('/admin/gestion_reservas.html', reservas =reservas_db)
 
 @app.errorhandler(404)
 def notFound(error=None):
