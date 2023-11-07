@@ -69,6 +69,10 @@ def cambiar_estado():
 def mostrar_detalle_habitacion(habitacion_id):
     habitacion_db= db.habitacion.find_one({'_id:objectId(habitacion_id)'})
     return render_template('detalle_habitacion.html', habitacion=habitacion_db)
+@app.route('/gestion_reservas')
+def gestion_reservas():
+    reservas_db=list (db.reservas.find())
+    return render_template('/admin/gestion_reservas.html', reservas =reservas_db)
 
 @app.errorhandler(404)
 def notFound(error=None):
