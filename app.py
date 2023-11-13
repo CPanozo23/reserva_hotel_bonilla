@@ -17,6 +17,11 @@ def home():
 def como_llegar():
     return render_template('como_llegar.html')
 
+@app.route('/gestion_reservas')
+def gestion_reservas():
+    reservas_db=list (db.reservas.find())
+    return render_template('/admin/gestion_reservas.html', reservas =reservas_db)
+
 #CONTACTO
 @app.route("/contacto")
 def contacto():
@@ -27,8 +32,6 @@ def contacto():
 def gestion_contacto():
     mensajes_db = list(db.mensajes.find())
     return render_template('admin/gestion_contacto.html', mensajes=mensajes_db)
-
-###############################################################################################################################################################################
 
 #CONTACTO: POST
 @app.route('/mensaje/agregar', methods=['POST'])
@@ -45,7 +48,17 @@ def agregar_mensaje():
     mensajes.insert_one(mensaje.to_db_collection())
     return redirect(url_for('home'))
 
-
+@app.route('/estado_reserva', methods=['POST'])
+def cambiar_estado():
+    reserva_id=request.form.get['reserva_id']
+    #db = dbase.dbConnection()
+    collection = db['reservas']
+    reserva = collection.find_one({"_id":ObjectId(reserva_id)})
+    if reserva:
+        collection.update_one({"_id": ObjectId(reserva_id)},{"$set":{"estado":"Aceptada"}})
+        return "cambiado"
+    else:
+        return "error"
 
 @app.errorhandler(404)
 def notFound(error=None):
