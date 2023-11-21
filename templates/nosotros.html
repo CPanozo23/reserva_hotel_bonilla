@@ -10,7 +10,11 @@
     <main>
     {% include 'componentes/nav.html' %}
 
+    <article>
+        <div class="container">
+        <h1>NUESTRA HISTORIA</h1>
 
+    </article>
 <div class="container p-3">
 <div class="card">
     <div class="row no-gutters">
@@ -31,27 +35,29 @@
 </div>
     <article>
         <div class="container">
-        <h1>LOS EMPLEADOS DESTACADOS</h1>
+        <h1>NUESTROS EMPLEADOS</h1>
 
     </article>
-    <div class="container">
-        {% for person in data_array %}
-        <div class="col-lg-5 col-md-7 mb-5">
-            <div class="card">
-                <div class="row no-gutters">
-                    <div class="col-lg-6 d-inline d-lg-block">
-                        <img src={{ person['imagen'] }} alt={{ person['imagen'] }} class="card-img">
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="card-body">
-                            <h5 class="card-title">{{person['nombre'] }}</h5>
-                            <p class="card-text">{{person['nombre'] }}</p>
-                        </div>
-                    </div>
+    <div  class="container">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+ {% for person in data_array %}
+
+        <div class="col">
+            <div class="card h-100">
+                <img src={{ person['imagen'] }} alt={{ person['imagen'] }} class="card-img">
+                <div class="card-body">
+                    <h5 class="card-title">{{person['nombre'] }}</h5>
+                    <p class="card-text">{{person['cargo'] }}</p>
+                    <p class="card-text">{{person['otro'] }}</p>
                 </div>
             </div>
         </div>
+
+
+        
         {% endfor %}
+
+    </div>
     </div>
 </section>
     {% include 'componentes/footer.html' %}
