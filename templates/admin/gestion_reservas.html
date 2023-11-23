@@ -12,26 +12,31 @@
         <div class="container">
             {% for reserva in reservas %}
             <div class=" row border p-1 ">  
-            <div class="col-md-12 col-lg-4 col-12 bg-primary">{{ reserva[ 'nombre'] }} {{ reserva['apellido']}}</div>
-            <div class="col-md-12 col-lg-4 col-12 bg-secondary">Fechas: {{ reserva[ 'fecha_ingreso'] }} - {{ reserva['fecha_salida']}}</div>
-            <div class="col-md-12 col-lg-4 col-12 bg-primary">
+            <div class="col-md-4 col-lg-2 col-12 ">{{ reserva[ 'nombre'] }} {{ reserva['apellido']}}</div>
+            <div class="col-md-4 col-lg-2 col-12 ">Entrada: {{ reserva[ 'fecha_ingreso'].strftime('%d-%m-%Y') }}</div>
+            <div class="col-md-4 col-lg-2 col-12 ">Salida: {{ reserva[ 'fecha_ingreso'].strftime('%d-%m-%Y') }}</div>
+            <div class="col-md-6 col-lg-4 col-12 ">
             <ul>
                 {% for habitacion in reserva['habitaciones']%}
                 <li>{{habitacion['nombre']}} -valor: {{ habitacion['valor']}} -cantidad: {{habitacion['cantidad']}}  </li>
                 {% endfor %}
             </ul >
         </div>
-        <!--REEMPLAZA ESTE DIV POR CODIGO-->
-        <div class="col-md-12 col-lg-14 col-12 bg-tertiary">
-            {{ reserva['estado']}}
-        <form action="/estado_reserva" method="post">
-            <input type=""hidden" name="reserva_id" 
-                value ="{{ reserval['_id'] }}">
-            <input type="submit" value="Aceptada"
-        </form>
-        </div>
-            <div class="col-md-12 col-lg-4 col-12 bg-tertiary">Estado:{{ reserva[ 'estado'] }}</div>
-        </div>
+        
+        <div class="col-md-6 col-lg-2 col-12 ">
+            <form action="{{ url_for('cambiar_estado_reserva', reserva_id=reserva['_id'] ) }}" method="post">
+                <input type="hidden" name="_id" value="{{ reserva['_id']}}">
+                <input type="hidden" name="estado" value="{{ reserva['estado']}}">
+                {% if reserva['estado']== 'Reservado' %}
+                <input type="submit" class="btn btn-warning" value="reservado">
+                {% elif reserva['estado']== 'Confirmado' %}
+                <input type="submit" class="btn btn-primary" value="Confirmado">
+                {% elif reserva['estado']== 'Realizado' %}
+                <input type="submit" class="btn btn-success" value="Realizado">
+                {% elif reserva['estado']== 'Anulado' %}
+                <input type="submit" class="btn btn-danger" value="Anulado">
+                {% endif %}
+            </form>
             {% endfor %}
         </div>
     </main>
