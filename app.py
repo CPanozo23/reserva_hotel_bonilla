@@ -36,7 +36,7 @@ def cambiar_estado_reserva(reserva_id):
     return redirect(url_for('gestion_reservas'))
 
 
-    
+
 @app.errorhandler(404)
 def notFound(error=None):
     message = {
@@ -49,3 +49,8 @@ def notFound(error=None):
 #lanzar la app
 if __name__ == '__main__':
     app.run(debug=True, port=4000)
+
+@app.route('/logout',methods=['GET'])
+def logout():
+    session.pop('user_info', None)
+    return redirect(url_for('login'))
